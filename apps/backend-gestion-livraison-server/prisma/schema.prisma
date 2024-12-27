@@ -1,0 +1,151 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Route {
+  actualDuration     Int?
+  breakTime          Int?
+  completionRate     Float?
+  createdAt          DateTime  @default(now())
+  currentLocation    String?
+  currentStatus      String?
+  date               DateTime?
+  driverId           Int?
+  endAddress         String?
+  endTime            DateTime?
+  estimatedDuration  Int?
+  id                 String    @id @default(cuid())
+  isOptimized        Boolean?
+  notes              String?
+  optimizationParams Json?
+  startAddress       String?
+  startTime          DateTime?
+  status             String?
+  totalDistance      Float?
+  trafficConditions  String?
+  updatedAt          DateTime  @updatedAt
+  waypoints          Json?
+  weather            String?
+}
+
+model Document {
+  createdAt         DateTime  @default(now())
+  expiryDate        DateTime?
+  fileSize          Int?
+  fileType          String?
+  id                String    @id @default(cuid())
+  status            String?
+  typeField         String?
+  updatedAt         DateTime  @updatedAt
+  uploadDate        DateTime?
+  url               String?
+  userId            Int?
+  verificationDate  DateTime?
+  verificationNotes String?
+  verified          Boolean?
+  verifiedBy        Int?
+}
+
+model LocationHistory {
+  accuracy     Float?
+  batteryLevel Float?
+  createdAt    DateTime  @default(now())
+  deliveryId   Int?
+  heading      Float?
+  id           String    @id @default(cuid())
+  location     String?
+  metadata     Json?
+  speed        Float?
+  timestamp    DateTime?
+  updatedAt    DateTime  @updatedAt
+  userId       Int?
+}
+
+model Rating {
+  categories Json?
+  comment    String?
+  createdAt  DateTime @default(now())
+  customerId Int?
+  deliveryId Int?
+  id         String   @id @default(cuid())
+  rating     Int?
+  response   String?
+  status     String?
+  updatedAt  DateTime @updatedAt
+  userId     Int?
+}
+
+model Delivery {
+  actualDeliveryTime    DateTime?
+  actualPickupTime      DateTime?
+  cancellationReason    String?
+  cancelledAt           DateTime?
+  createdAt             DateTime           @default(now())
+  currency              String?
+  currentLocation       String?
+  customerId            Int?
+  deliveryAddress       String?
+  deliveryContactName   String?
+  deliveryContactPhone  String?
+  deliveryCoords        String?
+  deliveryInstructions  String?
+  deliveryTimeWindow    Json?
+  dimensions            Json?
+  discount              Float?
+  distance              Float?
+  driverId              Int?
+  estimatedArrival      DateTime?
+  estimatedTime         Int?
+  feedback              String?
+  id                    String             @id @default(cuid())
+  isFragile             Boolean?
+  notes                 String?
+  orderNumber           String?
+  packageSize           String?
+  packageType           String?
+  paymentMethod         String?
+  paymentStatus         String?
+  pickupAddress         String?
+  pickupContactName     String?
+  pickupContactPhone    String?
+  pickupCoords          String?
+  pickupInstructions    String?
+  pickupTimeWindow      Json?
+  price                 Float?
+  priority              Int?
+  progress              Int?
+  promoCode             String?
+  proofOfDelivery       String?
+  requiresRefrigeration Boolean?
+  routeId               Int?
+  scheduledDate         DateTime?
+  signature             String?
+  status                String?
+  tags                  EnumDeliveryTags[]
+  trackingNumber        String?
+  trackingUrl           String?
+  typeField             String?
+  updatedAt             DateTime           @updatedAt
+  weight                Float?
+}
+
+enum EnumDeliveryTags {
+  Option1
+}
