@@ -1,0 +1,31 @@
+import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { JsonFilter } from "../../util/JsonFilter";
+
+export type RouteWhereInput = {
+  actualDuration?: IntNullableFilter;
+  breakTime?: IntNullableFilter;
+  completionRate?: FloatNullableFilter;
+  currentLocation?: StringNullableFilter;
+  currentStatus?: StringNullableFilter;
+  date?: DateTimeNullableFilter;
+  driverId?: IntNullableFilter;
+  endAddress?: StringNullableFilter;
+  endTime?: DateTimeNullableFilter;
+  estimatedDuration?: IntNullableFilter;
+  id?: StringFilter;
+  isOptimized?: BooleanNullableFilter;
+  notes?: StringNullableFilter;
+  optimizationParams?: JsonFilter;
+  startAddress?: StringNullableFilter;
+  startTime?: DateTimeNullableFilter;
+  status?: StringNullableFilter;
+  totalDistance?: FloatNullableFilter;
+  trafficConditions?: StringNullableFilter;
+  waypoints?: JsonFilter;
+  weather?: StringNullableFilter;
+};
